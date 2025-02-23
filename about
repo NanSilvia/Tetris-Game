@@ -1,0 +1,47 @@
+A) we have 4 main instances:    - block(a class that creates a square block that, by combining more will create the shapes)
+                                - tetromino ( the class that holds the shapes formed with the blocks)
+                                -  tetris ( will control the movement of the shapes on the playing board)
+                                - app ( the run method that runs the code /  starts the game)
+
+
+B) to make a tetramino out of blocks:
+    - you need a pivot: let the pivot be the origin = the top left corner
+    - in the setting file there is a dictionary that contains all the shapes possible: the sjapes are described
+by a list of coordinates of all the blocks that makes a shape a shape if that makes sense
+    - to display them in the right place we also need to define an offset: so we will use the Vector2 in settings file
+
+C) to make them move on the board:
+    - they can only move left, right and down.
+    - we define the movement as an incrementation/ decrementation of the x and y axis as necessarily
+    - when we have to press a key to move the obj, we will use a timer so that it will move smoothly => the timer is in app class, where we check what tipe of event is. and only if its a user event
+
+
+D) for collisions on the board
+    - we need to check if any block of the thetronimo is inside the board or not. if at least one is not=> we have a collision and it should not show it and be able to move it
+    - we need to check the pos of each block so we add the method in Block class and it will be called every time there is a change
+    - bc of this change, the shape will not go beyond the board and will rest on the bottom
+
+
+E) to know what we have on the board:
+    - every time a new tetromino lands, we need to update our matrix "field_array"that keeps the positions
+
+
+
+F) ROTATIONS : 90 degrees
+    - to rotate a poit A 90 degrees around a point P:
+                                                       |~~~~~~~~~~~~|
+            1. you subtract the coord of P from A :    |  A' = A-P  |
+                                  |~~~~~~~~~~~~~~~~|   |~~~~~~~~~~~~|
+            2. rotate the poit :  | A" = A'.rotate |
+                                  |~~~~~~~~~~~~~~~~|                       |~~~~~~~~~~~~~~|
+            3. you add the coord of the point P back to the rotatation :   |  A = A" + P  |
+                                                                           |~~~~~~~~~~~~~~|
+    - to rotate a tetronimo you ritate each block that makes that shape around the pivot and if it doesnt exceeds the bounds
+        of the board or doesn't intersect other shapes aka is not a collision => we can rotate it => change its coordinates.
+        For that we rotate each block individualy at first
+
+
+
+
+
+
